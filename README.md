@@ -21,16 +21,25 @@ Este projeto é uma aplicação web simples que permite buscar operadoras de pla
 ## Estrutura do Projeto
 
 ```
-Teste-de-API/
+Teste-de-API
+├── operadoras-frontend/
+│   ├── public/
+│   │   ├── index.html
+│   ├── src/
+│   │   ├── assets/
+│   │   ├── components/
+│   │   ├── App.vue
+│   │   ├── main.js
+│   ├── .gitignore
+│   ├── babel.config.js
+│   ├── jsconfig.json
+│   ├── package.json
+│   ├── README.md
+│   ├── vue.config.js
+├── venv/
+├── operadoras.csv
 ├── README.md
 ├── server.py
-├── index.html
-│
-├── venv/
-│   └── ... (ambiente virtual Python)
-│
-└── downloads/
-    └── operadoras.csv
 ```
 
 ---
