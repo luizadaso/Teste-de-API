@@ -1,12 +1,15 @@
 # server.py
 from flask import Flask, request, jsonify
+from flask_cors import CORS
 import pandas as pd
 import requests
 import os
 
 app = Flask(__name__)
+CORS(app)  # Adicionar suporte a CORS
 
-CSV_URL = 'https://dadosabertos.ans.gov.br/FTP/PDA/operadoras_de_plano_de_saude_ativas/'
+# URL do arquivo CSV específico
+CSV_URL = 'https://dadosabertos.ans.gov.br/FTP/PDA/operadoras_de_plano_de_saude_ativas/Relatorio_cadop.csv'
 
 def download_csv(url, filename):
     response = requests.get(url)
