@@ -19,7 +19,11 @@ if not os.path.exists(csv_filename):
     download_csv(CSV_URL, csv_filename)
 
 # Carregar dados do CSV
-df = pd.read_csv(csv_filename, sep=';', encoding='latin1')
+try:
+    df = pd.read_csv(csv_filename, sep=';', encoding='latin1', on_bad_lines='skip')
+except pd.errors.ParserError as e:
+    print(f"Erro ao ler o CSV: {e}")
+    df = pd.DataFrame()  # Cria um DataFrame vazio em caso de erro
 
 @app.route('/search', methods=['GET'])
 def search():
