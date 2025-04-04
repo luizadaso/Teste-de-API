@@ -28,11 +28,17 @@ except pd.errors.ParserError as e:
     print(f"Erro ao ler o CSV: {e}")
     df = pd.DataFrame()  # Cria um DataFrame vazio em caso de erro
 
+@app.route('/data', methods=['GET'])
+def get_data():
+    return jsonify(df.head(10).to_dict(orient='records'))
+
 @app.route('/search', methods=['GET'])
 def search():
     query = request.args.get('query', '')
+    print(f"Query: {query}")  # Log da consulta
     if query:
         results = df[df.apply(lambda row: row.astype(str).str.contains(query, case=False).any(), axis=1)]
+        print(f"Results: {results}")  # Log dos resultados
         return jsonify(results.to_dict(orient='records'))
     return jsonify([])
 

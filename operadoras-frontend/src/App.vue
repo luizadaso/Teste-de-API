@@ -30,8 +30,12 @@ export default {
   methods: {
     async search() {
       if (this.query) {
-        const response = await axios.get(`http://localhost:5000/search?query=${this.query}`);
-        this.operators = response.data;
+        try {
+          const response = await axios.get(`http://localhost:5000/search?query=${this.query}`);
+          this.operators = response.data;
+        } catch (error) {
+          console.error("Erro ao buscar dados:", error);
+        }
       } else {
         this.operators = [];
       }
